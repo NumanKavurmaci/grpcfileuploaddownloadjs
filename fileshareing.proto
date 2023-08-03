@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package filesharePackage;
+
+import "google/protobuf/timestamp.proto"; // Import the timestamp.proto file for using google.protobuf.Timestamp.
+
+option java_multiple_files = true; // This option generates separate Java files for each message and service.
+
+service FileService {
+    rpc upload(UploadRequest) returns (UploadResponse);
+    rpc download(DownloadRequest) returns (DownloadResponse);
+}
+
+message UploadRequest {
+    File file = 1; 
+    bytes filedata = 2; 
+}
+
+message UploadResponse {
+    ErrorCode error_code = 1; // Error code (OK if successful, other error codes if failed).
+    string error_message = 2; // Error message if applicable.
+    // You can add additional fields here if needed for successful upload response.
+}
+
+message DownloadRequest {
+    string id = 1; 
+}
+
+message DownloadResponse {
+    ErrorCode error_code = 1;
+    string error_message = 2;
+    bytes filedata = 3; // The downloaded file data (if successful).
+    File file = 4; // Optional: The file metadata (if successful).
+}
+
+message File {
+    string id = 1;
+    string filename = 2;
+    int64 size = 3;
+    string path = 4;
+    string mime_type = 5;
+    string timestamp = 6;
+    string owner = 7;
+    repeated string tags = 8;
+}
+
+enum ErrorCode {
+    OK = 0;
+    FILE_NOT_FOUND = 1;
+    UPLOAD_FAILED = 2;
+    DOWNLOAD_FAILED = 3;
+}
+
+message ErrorResponse {
+    ErrorCode error_code = 1;
+    string error_message = 2;
+}

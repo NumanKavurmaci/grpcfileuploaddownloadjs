@@ -1,0 +1,21 @@
+{
+  "name": "grpc-todo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@grpc/grpc-js": "^1.8.21",
+    "@grpc/proto-loader": "^0.7.8",
+    "google-protobuf": "^3.21.2",
+    "npx": "^10.2.2",
+    "path": "^0.12.7",
+    "sqlite3": "^5.1.6",
+    "uuid": "^9.0.0"
+  }
+}
